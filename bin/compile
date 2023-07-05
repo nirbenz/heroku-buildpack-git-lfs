@@ -38,8 +38,7 @@ echo "-----> Install Git LFS Version ${GITLFS_VERSION}"
     pushd /tmp
     wget https://github.com/git-lfs/git-lfs/releases/download/${GITLFS_VERSION}/git-lfs-linux-amd64-${GITLFS_VERSION}.tar.gz \
          -O git-lfs.tar.gz 
-    mkdir -p git-lfs
-    tar -xvf /tmp/git-lfs.tar.gz -C /tmp/git-lfs --strip-components=1
+    tar -xvf /tmp/git-lfs.tar.gz --strip-components=1
     popd
 
 ) | indent
