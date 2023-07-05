@@ -55,14 +55,21 @@ echo "-----> Download Git LFS assets"
 export PATH="$HOME/.heroku/bin:$PATH"
 EOF
     export PATH="$build_dir/.heroku/bin:$PATH"
-
+    echo "-----pwd-----"
+    pwd
+    ls -l
+    echo "-----pwd-----"
     git version
     git-lfs version
-
+    echo "git init"
     git init
+    echo 'git remote add origin "$repo"'
     git remote add origin "$repo"
+    echo "git fetch origin"
     git fetch origin
+    echo 'git reset --mixed "${SOURCE_VERSION:-$CI_SOURCE_VERSION}"'
     git reset --mixed "${SOURCE_VERSION:-$CI_SOURCE_VERSION}"
+    echo "...installing lfs"
     git lfs install
     git lfs pull
     rm -rf .git
