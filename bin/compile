@@ -31,6 +31,8 @@ fi
 
 GITLFS_VERSION="v3.3.0"
 
+echo "-----> git sources used: ${SOURCE_VERSION:-$CI_SOURCE_VERSION}"
+echo "-----> git repo used: ${repo}"
 echo "-----> Install Git LFS Version ${GITLFS_VERSION}"
 (
     pushd /tmp
@@ -57,9 +59,6 @@ EOF
     git version
     git-lfs version
 
-# This downloads git-lfs stuff
-    echo "----> git sources used: ${SOURCE_VERSION:-$CI_SOURCE_VERSION}"
-    echo "----> git repo used: ${repo}"
     git init
     git remote add origin "$repo"
     git fetch origin
