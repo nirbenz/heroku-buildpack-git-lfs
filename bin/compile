@@ -29,10 +29,12 @@ if [[ -f "$env_dir/HEROKU_TEST_RUN_COMMIT_VERSION" ]]; then
     CI_SOURCE_VERSION="$(< "$env_dir/HEROKU_TEST_RUN_COMMIT_VERSION")"
 fi
 
-echo "-----> Install Git LFS"
+GITLFS_VERSION="v3.3.0"
+
+echo "-----> Install Git LFS Version ${GITLFS_VERSION}"
 (
     pushd /tmp
-    wget https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz \
+    wget https://github.com/git-lfs/git-lfs/releases/download/${GITLFS_VERSION}/git-lfs-linux-amd64-${GITLFS_VERSION}.tar.gz \
          -O git-lfs.tar.gz
     tar -xvf /tmp/git-lfs.tar.gz
     popd
@@ -55,6 +57,9 @@ EOF
     git version
     git-lfs version
 
+# This downloads git-lfs stuff
+    echo "----> git sources used: ${SOURCE_VERSION:-$CI_SOURCE_VERSION}"
+    echo "----> git repo used: ${repo}"
     git init
     git remote add origin "$repo"
     git fetch origin
